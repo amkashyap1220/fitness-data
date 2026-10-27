@@ -8,6 +8,7 @@
      node engine/cli.js undo <lift>             remove the last set of a lift
      node engine/cli.js cardio <machine> <min> [--notes "..."]
      node engine/cli.js note "<text>"
+     node engine/cli.js weight <lb> | remove    body weight for the day
      node engine/cli.js finish | skip | rest    close the day, save the next plan
      node engine/cli.js summary                 the day so far vs last time
      node engine/cli.js find <words>            look up lift ids
@@ -43,7 +44,8 @@ export function load(root = ROOT) {
   const workouts = {};
   if (existsSync(dir)) readdirSync(dir).filter((f) => /^\d{4}\.json$/.test(f)).sort()
     .forEach((f) => Object.assign(workouts, read(join("workouts", f))));
-  return { program: read("program.json"), exercises: read("exercises.json"), preferences: read("preferences.json"), workouts };
+  const bodyweight = existsSync(join(root, "bodyweight.json")) ? read("bodyweight.json") : {};
+  return { program: read("program.json"), exercises: read("exercises.json"), preferences: read("preferences.json"), workouts, bodyweight };
 }
 
 // Only the year file the date belongs to is rewritten, with dates in order
@@ -159,6 +161,10 @@ export function validate(data) {
   });
   (data.preferences.requests || []).forEach((r, i) => {
     if (!r || typeof r.text !== "string" || !r.text.trim()) problems.push(`preferences.json: request ${i} has no text`);
+  });
+  Object.entries(data.bodyweight || {}).forEach(([date, lb]) => {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) problems.push(`bodyweight.json: bad date key "${date}"`);
+    if (!(typeof lb === "number" && lb >= 50 && lb <= 700)) problems.push(`bodyweight.json ${date}: weight must be a number of lb`);
   });
   Object.entries(data.workouts).forEach(([date, w]) => {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) problems.push(`workouts: bad date key "${date}"`);
@@ -279,6 +285,21 @@ function main(argv) {
       console.log(`Notes: ${entry.notes}`);
       break;
     }
+    case "weight": {
+      const bw = data.bodyweight;
+      if (rest[0] === "remove") delete bw[date];
+      else {
+        const lb = Number(String(rest[0] || "").replace(/lbs?$/i, ""));
+        if (!(lb >= 50 && lb <= 700)) throw new Error("Give the weight in lb, e.g. weight 182.4");
+        bw[date] = Math.round(lb * 10) / 10;
+      }
+      writeJson("bodyweight.json", Object.fromEntries(Object.entries(bw).sort(([a], [b]) => (a < b ? -1 : 1))));
+      const dates = Object.keys(bw).sort();
+      const prev = dates.filter((d) => d < date).pop();
+      console.log(bw[date] === undefined ? `Removed the weigh-in for ${date}.`
+        : `Body weight ${date}: ${bw[date]} lb` + (prev ? ` (${bw[date] - bw[prev] >= 0 ? "+" : ""}${Math.round((bw[date] - bw[prev]) * 10) / 10} since ${prev})` : ""));
+      break;
+    }
     case "finish":
     case "skip":
     case "rest": {
@@ -357,7 +378,7 @@ function main(argv) {
       break;
     }
     default:
-      console.log(readFileSync(fileURLToPath(import.meta.url), "utf8").split("\n").slice(2, 18).join("\n"));
+      console.log(readFileSync(fileURLToPath(import.meta.url), "utf8").split("\n").slice(2, 22).join("\n"));
   }
 }
 

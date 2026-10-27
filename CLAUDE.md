@@ -1,6 +1,6 @@
 # fitness-data
 
-Alex's private workout log and the plan engine behind the daily workout session and the dashboard at alexanderk.dev/private/fitness-tracking. This repo is private: never copy its data into any public repo, issue, or page.
+Alex's workout log and the plan engine behind the daily workout session and the dashboard at alexanderk.dev/private/fitness-tracking. This repo is public on purpose (Alex decided it's fine to read, as long as only Alex can edit it). Still keep its data out of the alexanderk.dev repo and out of issues, and only show it on the logged-in dashboard.
 
 ## Files
 
@@ -8,6 +8,7 @@ Alex's private workout log and the plan engine behind the daily workout session 
 - `exercises.json`: the lift catalog. Each lift has one `slot`.
 - `preferences.json`: Alex's rankings per slot and "never" list, edited from the dashboard. Timezone and cardio target. `requests`: lifts Alex typed into the dashboard's "Add a lift" box, waiting for a session to add them.
 - `workouts/<year>.json`: one entry per date: `status` (`in_progress`, `completed`, `skipped`, `rest`), `day`, `started`, `finished`, `cardio` (list of `{machine, minutes, notes?}`), `lifts` (list of `{exercise, sets: [{weight, reps}]}`), `recommended`, `notes`. Weights in lb; bodyweight is 0 (or the added weight).
+- `bodyweight.json`: `{ "YYYY-MM-DD": lb }`, one weigh-in per day, from the dashboard or the session.
 - `state.json`: the next session's plan, written on finish, skip and rest.
 - `engine/engine.js`: plan and analysis logic (pure, also loaded by the dashboard). `engine/cli.js`: the commands below.
 
@@ -20,6 +21,7 @@ Always use the CLI rather than editing workout JSON by hand, and run `node engin
 3. As Alex reports sets, in any wording and in any batch size, turn them into commands:
    - `node engine/cli.js log <lift-id> <sets...>`: `185x8` (one set), `185x8x3` (three sets of 8), `185x8,7,6` (three sets), `bwx10`, `bw+25x6`.
    - `node engine/cli.js cardio <treadmill|bike|elliptical> <minutes> [--notes "..."]`
+   - `node engine/cli.js weight <lb>` when Alex reports a body weight (`weight remove` takes the day's weigh-in back). Works on any day, workout or not.
    - `node engine/cli.js note "..."` for anything else worth keeping (pain, energy, gym crowded).
    - `node engine/cli.js undo <lift-id>` to drop the last set, then re-log the right numbers for corrections.
    - Use `node engine/cli.js find <words>` to get a lift id. If several match, pick the one that fits what Alex said (e.g. "bench" alone means `bench-press`); ask only if it's truly unclear.

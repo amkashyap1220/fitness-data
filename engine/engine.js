@@ -11,6 +11,7 @@
      exercises    exercises.json    the lift catalog ({ exercises: [...] })
      preferences  preferences.json  rankings per slot, "never" list, cardio
      workouts     workouts/*.json   merged into one { "YYYY-MM-DD": entry }
+     bodyweight   bodyweight.json   { "YYYY-MM-DD": lb }
    Dates are "YYYY-MM-DD" strings in Alex's own time zone.
    ========================================================================== */
 
@@ -275,4 +276,24 @@ export function analyze({ program, exercises, workouts, date, weeks = 12 }) {
     adherence: planned ? Math.round((done / planned) * 100) : null,
     days: all.map((s) => ({ date: s.date, status: s.status, day: s.day || null })),
   };
+}
+
+/* --------------------------------------------------------------------------
+   Body weight: day-to-day weigh-ins swing by a few lb with water and food,
+   so the trend is the average of the weigh-ins in the 7 days up to each one.
+   -------------------------------------------------------------------------- */
+export function weightTrend(bodyweight = {}, date) {
+  const dates = Object.keys(bodyweight).filter((d) => !date || d <= date).sort();
+  const points = dates.map((d) => {
+    const week = dates.filter((x) => x <= d && daysBetween(x, d) < 7).map((x) => bodyweight[x]);
+    return { date: d, weight: bodyweight[d], trend: Math.round((week.reduce((a, b) => a + b, 0) / week.length) * 10) / 10 };
+  });
+  const last = points[points.length - 1];
+  // Change in the trend over the last N days, from the closest point at or before that day
+  const change = (days) => {
+    if (!last) return null;
+    const from = points.filter((p) => daysBetween(p.date, last.date) >= days).pop();
+    return from ? Math.round((last.trend - from.trend) * 10) / 10 : null;
+  };
+  return { points, latest: last || null, change7: change(7), change30: change(30) };
 }

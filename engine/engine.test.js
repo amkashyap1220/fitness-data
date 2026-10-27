@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { computePlan, analyze, e1rm, weekStart, addDays, localDate } from "./engine.js";
+import { computePlan, analyze, e1rm, weekStart, addDays, localDate, weightTrend } from "./engine.js";
 import { load, parseSets, validate, findExercises } from "./cli.js";
 
 const base = load();
@@ -168,4 +168,16 @@ test("dates and set parsing", () => {
   assert.deepEqual(parseSets(["bwx10", "bw+25x6"]), [{ weight: 0, reps: 10 }, { weight: 25, reps: 6 }]);
   assert.throws(() => parseSets(["eight reps"]));
   assert.deepEqual(findExercises(base.exercises, "incline db press").map((e) => e.id), ["incline-db-press"]);
+});
+
+test("body weight: a 7-day average trend and its change", () => {
+  const bw = { "2026-01-01": 190, "2026-01-03": 188, "2026-01-08": 186, "2026-01-31": 182, "2026-02-07": 181 };
+  const t = weightTrend(bw);
+  assert.deepEqual(t.points.map((p) => p.trend), [190, 189, 187, 182, 181]);   // 01-08 averages 01-03 and 01-08 only
+  assert.equal(t.latest.weight, 181);
+  assert.equal(t.change7, -1);
+  assert.equal(t.change30, -6);   // vs 01-08, the last point at least 30 days back
+  assert.equal(weightTrend({}).latest, null);
+  assert.equal(weightTrend(bw, "2026-01-03").points.length, 2);
+  assert.ok(validate({ ...base, bodyweight: { "2026-01-01": "heavy" } }).some((p) => p.includes("bodyweight")));
 });
