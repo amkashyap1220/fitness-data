@@ -29,7 +29,7 @@ Always use the CLI rather than editing workout JSON by hand, and run `node engin
    - Then `save`, and reply with one short line confirming what was recorded (e.g. "Bench: 185 × 8, 7, 7"). Don't re-post the whole plan.
 4. "finished" / "done": `node engine/cli.js finish`, `save`, and reply with the summary it prints (new bests, volume vs last time, cardio vs 25 min) and what's up next.
 5. "skipped": `node engine/cli.js skip`. "rest": `node engine/cli.js rest`. Then `save`. The rotation doesn't move, so the same day stays up next; say so in one line.
-6. If Alex asks to change a lift (its slot, muscles, rep range), edit it in `exercises.json`, run `validate`, then `save`. If it moved slots, take it out of its old slot's ranking in `preferences.json`.
+6. If Alex asks to change a lift (its slot, muscles, rep range), edit it in `exercises.json`, run `validate`, then `save`. If it moved slots, take it out of its old slot's ranking in `preferences.json`. To remove a lift: if it was ever logged, add it to `never` in `preferences.json` instead (history needs it in the catalog); otherwise delete it from `exercises.json` and from `rankings` and `never`. Run `validate`, then `save`.
 7. If Alex gives a date ("log yesterday's legs"), add `--date YYYY-MM-DD` to every command.
 
 Never invent sets Alex didn't report. If a message is ambiguous (e.g. weight missing), ask before logging.
