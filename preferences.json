@@ -1,7 +1,38 @@
 {
   "units": "lb",
   "timezone": "America/Chicago",
-  "cardio": { "minutes": 25, "machines": ["treadmill", "bike", "elliptical"] },
-  "rankings": {},
-  "never": []
+  "cardio": {
+    "minutes": 25,
+    "machines": [
+      "treadmill",
+      "bike",
+      "elliptical"
+    ]
+  },
+  "rankings": {
+    "h_press": [
+      "machine-chest-press",
+      "bench-press",
+      "db-bench-press"
+    ],
+    "v_press": [
+      "seated-db-shoulder-press",
+      "machine-shoulder-press",
+      "ohp"
+    ],
+    "chest_acc": [
+      "pec-deck"
+    ],
+    "triceps": [
+      "overhead-tricep-extension",
+      "tricep-pushdown"
+    ],
+    "side_delts": [
+      "cable-lateral-raise",
+      "machine-lateral-raise"
+    ]
+  },
+  "never": [
+    "arnold-press"
+  ]
 }
