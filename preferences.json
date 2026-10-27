@@ -47,6 +47,16 @@
     ],
     "traps": [
       "db-shrug"
+    ],
+    "squat": [
+      "goblet-squat"
+    ],
+    "leg_acc": [
+      "seated-leg-curl",
+      "leg-extension"
+    ],
+    "leg_press": [
+      "leg-press"
     ]
   },
   "never": [
