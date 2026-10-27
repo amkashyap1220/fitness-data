@@ -8,7 +8,7 @@ Alex's workout log and the plan engine behind the daily workout session and the 
 - `exercises.json`: the lift catalog. Each lift has one `slot`.
 - `preferences.json`: Alex's rankings per slot and "never" list, edited from the dashboard. Timezone and cardio target. `requests`: lifts Alex typed into the dashboard's "Add a lift" box, waiting for a session to add them.
 - `workouts/<year>.json`: one entry per date: `status` (`in_progress`, `completed`, `skipped`, `rest`), `day`, `started`, `finished`, `cardio` (list of `{machine, minutes, notes?}`), `lifts` (list of `{exercise, sets: [{weight, reps}]}`), `recommended`, `notes`. Weights in lb; bodyweight is 0 (or the added weight).
-- `bodyweight.json`: `{ "YYYY-MM-DD": lb }`, one weigh-in per day, from the dashboard or the session.
+- `bodyweight.json`: `{ "YYYY-MM-DD": lb }`, one weigh-in per day, logged by the session when Alex gives one.
 - `state.json`: the next session's plan, written on finish, skip and rest.
 - `engine/engine.js`: plan and analysis logic (pure, also loaded by the dashboard). `engine/cli.js`: the commands below.
 
@@ -17,11 +17,11 @@ Alex's workout log and the plan engine behind the daily workout session and the 
 Always use the CLI rather than editing workout JSON by hand, and run `node engine/cli.js save "<what changed>"` after every change so nothing is lost if the session ends early. `save` validates, commits and pushes to main.
 
 1. `git pull`, then `node engine/cli.js plan`. If it lists lift requests, handle each one first. A request is free text from Alex (e.g. "landmine press, love it for shoulders"). Work out the lift's name, slot, main and helper muscles, type, rep range and increment. Add it with `add-exercise '<json>' --request N`, and add `--rank first` if Alex says it's a favorite or asks for it to be suggested. If it's already in the catalog, or it's a variation of one that's there, use `drop-request N` instead, and rank the existing lift if that's what Alex wanted. Requests are numbered, and the numbers shift as you clear them, so run `requests` again between clears. Then `save`, run `plan` again (the new lift can change it), and tell Alex in one line per request what you added and where.
-2. Post the plan to Alex: the day and number, 25 min cardio and the suggested machine, each lift with sets × reps @ weight and its one-line note. Keep it skimmable on a phone.
+2. Post the plan to Alex: the day and number, 25 min cardio and the suggested machine, each lift with sets × reps @ weight and its one-line note. End with one optional line asking for today's body weight (e.g. "Weigh in today? Optional."). Keep it skimmable on a phone.
 3. As Alex reports sets, in any wording and in any batch size, turn them into commands:
    - `node engine/cli.js log <lift-id> <sets...>`: `185x8` (one set), `185x8x3` (three sets of 8), `185x8,7,6` (three sets), `bwx10`, `bw+25x6`.
    - `node engine/cli.js cardio <treadmill|bike|elliptical> <minutes> [--notes "..."]`
-   - `node engine/cli.js weight <lb>` when Alex reports a body weight (`weight remove` takes the day's weigh-in back). Works on any day, workout or not.
+   - `node engine/cli.js weight <lb>` when Alex reports a body weight (`weight remove` takes the day's weigh-in back). Works on any day, workout or not. Weight is optional: never ask twice in a session or hold anything up waiting for it. The session is the only place weigh-ins are entered (the dashboard only shows them).
    - `node engine/cli.js note "..."` for anything else worth keeping (pain, energy, gym crowded).
    - `node engine/cli.js undo <lift-id>` to drop the last set, then re-log the right numbers for corrections.
    - Use `node engine/cli.js find <words>` to get a lift id. If several match, pick the one that fits what Alex said (e.g. "bench" alone means `bench-press`); ask only if it's truly unclear.
