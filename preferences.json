@@ -30,6 +30,23 @@
     "side_delts": [
       "cable-lateral-raise",
       "machine-lateral-raise"
+    ],
+    "v_pull": [
+      "lat-pulldown"
+    ],
+    "h_row": [
+      "seated-cable-row"
+    ],
+    "rear_delts": [
+      "reverse-pec-deck"
+    ],
+    "biceps": [
+      "db-curl",
+      "preacher-curl",
+      "hammer-curl"
+    ],
+    "traps": [
+      "db-shrug"
     ]
   },
   "never": [
