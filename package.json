@@ -1,0 +1,6 @@
+{
+  "name": "fitness-data",
+  "private": true,
+  "type": "module",
+  "scripts": { "test": "node --test" }
+}

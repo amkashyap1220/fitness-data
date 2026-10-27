@@ -1,0 +1,7 @@
+{
+  "units": "lb",
+  "timezone": "America/Chicago",
+  "cardio": { "minutes": 25, "machines": ["treadmill", "bike", "elliptical"] },
+  "rankings": {},
+  "never": []
+}

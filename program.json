@@ -1,0 +1,42 @@
+{
+  "rotation": ["push", "pull", "legs"],
+  "days": {
+    "push": { "name": "Push", "core": ["h_press", "v_press", "chest_acc", "triceps"], "flex": ["side_delts", "triceps", "chest_acc"] },
+    "pull": { "name": "Pull", "core": ["v_pull", "h_row", "rear_delts", "biceps"], "flex": ["traps", "h_row", "biceps"] },
+    "legs": { "name": "Legs", "core": ["squat", "hinge", "leg_acc", "calves"], "flex": ["single_leg", "leg_press", "core"] }
+  },
+  "slots": {
+    "h_press":    { "name": "Horizontal press", "day": "push" },
+    "v_press":    { "name": "Vertical press", "day": "push" },
+    "chest_acc":  { "name": "Incline or chest isolation", "day": "push" },
+    "triceps":    { "name": "Triceps", "day": "push" },
+    "side_delts": { "name": "Side delts", "day": "push" },
+    "v_pull":     { "name": "Vertical pull", "day": "pull" },
+    "h_row":      { "name": "Horizontal row", "day": "pull" },
+    "rear_delts": { "name": "Rear delts", "day": "pull" },
+    "biceps":     { "name": "Biceps", "day": "pull" },
+    "traps":      { "name": "Traps", "day": "pull" },
+    "squat":      { "name": "Squat pattern", "day": "legs" },
+    "hinge":      { "name": "Hip hinge", "day": "legs" },
+    "leg_acc":    { "name": "Hamstring curl or quad extension", "day": "legs" },
+    "calves":     { "name": "Calves", "day": "legs" },
+    "single_leg": { "name": "Single leg", "day": "legs" },
+    "leg_press":  { "name": "Leg press", "day": "legs" },
+    "core":       { "name": "Core", "day": "legs" }
+  },
+  "muscles": {
+    "chest": "Chest", "front_delts": "Front delts", "side_delts": "Side delts", "rear_delts": "Rear delts",
+    "triceps": "Triceps", "lats": "Lats", "upper_back": "Upper back", "traps": "Traps", "biceps": "Biceps",
+    "forearms": "Forearms", "quads": "Quads", "hamstrings": "Hamstrings", "glutes": "Glutes", "calves": "Calves",
+    "core": "Core", "lower_back": "Lower back"
+  },
+  "tracked_muscles": ["chest", "side_delts", "rear_delts", "triceps", "lats", "upper_back", "biceps", "quads", "hamstrings", "glutes", "calves"],
+  "push_muscles": ["chest", "front_delts", "triceps"],
+  "pull_muscles": ["lats", "upper_back", "rear_delts", "biceps"],
+  "sets_per_lift": 3,
+  "weekly_sets": { "low": 6, "target": 10, "high": 20 },
+  "deload_after_days": 7,
+  "deload_factor": 0.9,
+  "long_session_minutes": 75,
+  "rest_hint_after_days": 6
+}

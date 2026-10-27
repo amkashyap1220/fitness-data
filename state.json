@@ -1,0 +1,92 @@
+{
+  "generated_at": "2026-10-27T04:50:43.766Z",
+  "plan": {
+    "date": "2026-10-26",
+    "day": "push",
+    "dayName": "Push",
+    "number": 1,
+    "cardio": {
+      "minutes": 25,
+      "machine": "treadmill",
+      "why": "not used in the last 2 weeks"
+    },
+    "lifts": [
+      {
+        "slot": "h_press",
+        "slotName": "Horizontal press",
+        "exercise": "bench-press",
+        "name": "Barbell bench press",
+        "sets": 3,
+        "reps": [
+          6,
+          10
+        ],
+        "weight": null,
+        "note": "No history yet: find a weight you can do for 6 to 10 reps",
+        "why": "a standard pick for this slot",
+        "flex": false
+      },
+      {
+        "slot": "v_press",
+        "slotName": "Vertical press",
+        "exercise": "ohp",
+        "name": "Barbell overhead press",
+        "sets": 3,
+        "reps": [
+          6,
+          10
+        ],
+        "weight": null,
+        "note": "No history yet: find a weight you can do for 6 to 10 reps",
+        "why": "a standard pick for this slot",
+        "flex": false
+      },
+      {
+        "slot": "chest_acc",
+        "slotName": "Incline or chest isolation",
+        "exercise": "incline-db-press",
+        "name": "Incline dumbbell press",
+        "sets": 3,
+        "reps": [
+          8,
+          12
+        ],
+        "weight": null,
+        "note": "No history yet: find a weight you can do for 8 to 12 reps",
+        "why": "a standard pick for this slot",
+        "flex": false
+      },
+      {
+        "slot": "triceps",
+        "slotName": "Triceps",
+        "exercise": "tricep-pushdown",
+        "name": "Tricep pushdown",
+        "sets": 3,
+        "reps": [
+          10,
+          15
+        ],
+        "weight": null,
+        "note": "No history yet: find a weight you can do for 10 to 15 reps",
+        "why": "a standard pick for this slot",
+        "flex": false
+      },
+      {
+        "slot": "side_delts",
+        "slotName": "Side delts",
+        "exercise": "lateral-raise",
+        "name": "Dumbbell lateral raise",
+        "sets": 3,
+        "reps": [
+          12,
+          20
+        ],
+        "weight": null,
+        "note": "No history yet: find a weight you can do for 12 to 20 reps",
+        "why": "fifth lift; a standard pick for this slot",
+        "flex": true
+      }
+    ],
+    "notes": []
+  }
+}
