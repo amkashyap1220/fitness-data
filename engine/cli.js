@@ -11,7 +11,10 @@
      node engine/cli.js finish | skip | rest    close the day, save the next plan
      node engine/cli.js summary                 the day so far vs last time
      node engine/cli.js find <words>            look up lift ids
-     node engine/cli.js add-exercise '<json>'   add a lift to the catalog
+     node engine/cli.js requests                lifts Alex asked for on the dashboard
+     node engine/cli.js add-exercise '<json>' [--request N] [--rank first|last]
+                                                add a lift (and clear request N)
+     node engine/cli.js drop-request N          clear a request without adding
      node engine/cli.js validate                check every file
      node engine/cli.js save "<message>"        commit and push
 
@@ -154,6 +157,9 @@ export function validate(data) {
     if (!data.program.slots[slot]) problems.push(`preferences.json: unknown slot "${slot}" in rankings`);
     list.forEach((id) => { if (!ex.has(id)) problems.push(`preferences.json: unknown lift "${id}" in rankings.${slot}`); });
   });
+  (data.preferences.requests || []).forEach((r, i) => {
+    if (!r || typeof r.text !== "string" || !r.text.trim()) problems.push(`preferences.json: request ${i} has no text`);
+  });
   Object.entries(data.workouts).forEach(([date, w]) => {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) problems.push(`workouts: bad date key "${date}"`);
     if (!STATUSES.includes(w.status)) problems.push(`workouts ${date}: status must be one of ${STATUSES.join(", ")}`);
@@ -167,6 +173,14 @@ export function validate(data) {
     });
   });
   return problems;
+}
+
+// Removes and returns request number `n` from preferences.requests
+function takeRequest(prefs, n) {
+  const list = prefs.requests || [];
+  const i = Number(n);
+  if (!Number.isInteger(i) || !list[i]) throw new Error(`No request ${n}. Run "requests" to see them.`);
+  return list.splice(i, 1)[0];
 }
 
 /* --------------------------------------------------------------------------
@@ -214,6 +228,8 @@ function main(argv) {
     case "plan": {
       const plan = flags.write ? writeState() : planFor(date);
       console.log(flags.json ? JSON.stringify(plan, null, 2) : formatPlan(plan, data));
+      const asked = data.preferences.requests || [];
+      if (asked.length && !flags.json) console.log(`\nLift requests from the dashboard (handle these first, see CLAUDE.md): ${asked.map((r, i) => `${i}. "${r.text}"`).join("; ")}`);
       break;
     }
     case "start": {
@@ -295,10 +311,29 @@ function main(argv) {
       e.increment = e.increment || 5;
       e.custom = true;
       data.exercises.exercises.push(e);
+      const prefs = data.preferences;
+      if (flags.rank) {
+        prefs.rankings = prefs.rankings || {};
+        const list = (prefs.rankings[e.slot] = prefs.rankings[e.slot] || []);
+        if (flags.rank === "first") list.unshift(e.id); else list.push(e.id);
+      }
+      if (flags.request !== undefined) takeRequest(prefs, flags.request);
       const problems = validate(data);
       if (problems.length) throw new Error(problems.join("\n"));
       writeJson("exercises.json", data.exercises);
-      console.log(`Added ${e.id} (${e.name}) to ${data.program.slots[e.slot].name}.`);
+      if (flags.rank || flags.request !== undefined) writeJson("preferences.json", prefs);
+      console.log(`Added ${e.id} (${e.name}) to ${data.program.slots[e.slot].name}${flags.rank ? `, ranked ${flags.rank}` : ""}.`);
+      break;
+    }
+    case "requests": {
+      const list = data.preferences.requests || [];
+      console.log(list.length ? list.map((r, i) => `${i}. "${r.text}" (asked ${r.at.slice(0, 10)})`).join("\n") : "No lift requests.");
+      break;
+    }
+    case "drop-request": {
+      const r = takeRequest(data.preferences, rest[0]);
+      writeJson("preferences.json", data.preferences);
+      console.log(`Cleared request "${r.text}".`);
       break;
     }
     case "validate": {
