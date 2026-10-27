@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-27T04:50:43.766Z",
+  "generated_at": "2026-10-27T18:07:03.709Z",
   "plan": {
-    "date": "2026-10-26",
+    "date": "2026-10-28",
     "day": "push",
     "dayName": "Push",
     "number": 1,
@@ -14,38 +14,8 @@
       {
         "slot": "h_press",
         "slotName": "Horizontal press",
-        "exercise": "bench-press",
-        "name": "Barbell bench press",
-        "sets": 3,
-        "reps": [
-          6,
-          10
-        ],
-        "weight": null,
-        "note": "No history yet: find a weight you can do for 6 to 10 reps",
-        "why": "a standard pick for this slot",
-        "flex": false
-      },
-      {
-        "slot": "v_press",
-        "slotName": "Vertical press",
-        "exercise": "ohp",
-        "name": "Barbell overhead press",
-        "sets": 3,
-        "reps": [
-          6,
-          10
-        ],
-        "weight": null,
-        "note": "No history yet: find a weight you can do for 6 to 10 reps",
-        "why": "a standard pick for this slot",
-        "flex": false
-      },
-      {
-        "slot": "chest_acc",
-        "slotName": "Incline or chest isolation",
-        "exercise": "incline-db-press",
-        "name": "Incline dumbbell press",
+        "exercise": "machine-chest-press",
+        "name": "Machine chest press",
         "sets": 3,
         "reps": [
           8,
@@ -53,14 +23,29 @@
         ],
         "weight": null,
         "note": "No history yet: find a weight you can do for 8 to 12 reps",
-        "why": "a standard pick for this slot",
+        "why": "your #1 for horizontal press",
         "flex": false
       },
       {
-        "slot": "triceps",
-        "slotName": "Triceps",
-        "exercise": "tricep-pushdown",
-        "name": "Tricep pushdown",
+        "slot": "v_press",
+        "slotName": "Vertical press",
+        "exercise": "seated-db-shoulder-press",
+        "name": "Seated dumbbell shoulder press",
+        "sets": 3,
+        "reps": [
+          8,
+          12
+        ],
+        "weight": null,
+        "note": "No history yet: find a weight you can do for 8 to 12 reps",
+        "why": "your #1 for vertical press",
+        "flex": false
+      },
+      {
+        "slot": "chest_acc",
+        "slotName": "Incline or chest isolation",
+        "exercise": "pec-deck",
+        "name": "Pec deck",
         "sets": 3,
         "reps": [
           10,
@@ -68,14 +53,29 @@
         ],
         "weight": null,
         "note": "No history yet: find a weight you can do for 10 to 15 reps",
-        "why": "a standard pick for this slot",
+        "why": "your #1 for incline or chest isolation",
+        "flex": false
+      },
+      {
+        "slot": "triceps",
+        "slotName": "Triceps",
+        "exercise": "overhead-tricep-extension",
+        "name": "Overhead cable tricep extension",
+        "sets": 3,
+        "reps": [
+          10,
+          15
+        ],
+        "weight": null,
+        "note": "No history yet: find a weight you can do for 10 to 15 reps",
+        "why": "your #1 for triceps",
         "flex": false
       },
       {
         "slot": "side_delts",
         "slotName": "Side delts",
-        "exercise": "lateral-raise",
-        "name": "Dumbbell lateral raise",
+        "exercise": "cable-lateral-raise",
+        "name": "Cable lateral raise",
         "sets": 3,
         "reps": [
           12,
@@ -83,7 +83,7 @@
         ],
         "weight": null,
         "note": "No history yet: find a weight you can do for 12 to 20 reps",
-        "why": "fifth lift; a standard pick for this slot",
+        "why": "one of your favorites; your #1 for side delts",
         "flex": true
       }
     ],
