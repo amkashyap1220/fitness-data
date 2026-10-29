@@ -1,16 +1,18 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { computePlan, analyze, e1rm, weekStart, addDays, localDate, weightTrend } from "./engine.js";
-import { load, parseSets, validate, findExercises } from "./cli.js";
+import { load, parseSets, validate, findExercises, catchUp } from "./cli.js";
 
-const base = load();
+// The repo's own files, minus Alex's rankings so the tests don't change when he ranks lifts
+const loaded = load();
+const base = { ...loaded, preferences: { ...loaded.preferences, rankings: {}, never: [], requests: [] } };
 const run = (workouts, preferences = base.preferences, date = "2026-11-02") =>
   computePlan({ ...base, preferences, workouts, date });
 const done = (day, lifts = [], extra = {}) => ({ status: "completed", day, lifts, cardio: [], ...extra });
 const lift = (exercise, ...sets) => ({ exercise, sets: sets.map(([weight, reps]) => ({ weight, reps })) });
 
 test("the repo's own data is valid", () => {
-  assert.deepEqual(validate(base), []);
+  assert.deepEqual(validate(loaded), []);
 });
 
 test("rotation starts on push and only moves on completed workouts", () => {
@@ -180,4 +182,24 @@ test("body weight: a 7-day average trend and its change", () => {
   assert.equal(weightTrend({}).latest, null);
   assert.equal(weightTrend(bw, "2026-01-03").points.length, 2);
   assert.ok(validate({ ...base, bodyweight: { "2026-01-01": "heavy" } }).some((p) => p.includes("bodyweight")));
+});
+
+test("days with no reply become skips, and the rotation stays put", () => {
+  const data = { ...base, workouts: {
+    "2026-11-01": done("push"),
+    "2026-11-02": { status: "in_progress", day: "pull", lifts: [lift("lat-pulldown", [120, 10])], cardio: [] },   // never said finished
+    "2026-11-03": { status: "in_progress", day: "legs", lifts: [], cardio: [] },                               // opened, nothing logged
+  } };
+  const filled = catchUp(data, "2026-11-06");
+  assert.deepEqual(filled, [
+    { date: "2026-11-02", status: "completed" }, { date: "2026-11-03", status: "skipped" },
+    { date: "2026-11-04", status: "skipped" }, { date: "2026-11-05", status: "skipped" },
+  ]);
+  assert.equal(data.workouts["2026-11-04"].day, "legs");
+  assert.equal(data.workouts["2026-11-05"].auto, true);
+  assert.equal(data.workouts["2026-11-06"], undefined);   // today is left alone
+  assert.equal(computePlan({ ...data, date: "2026-11-06" }).day, "legs");
+  assert.deepEqual(validate(data), []);
+  assert.deepEqual(catchUp(data, "2026-11-06"), []);   // nothing left to do
+  assert.deepEqual(catchUp({ ...base, workouts: {} }, "2026-11-06"), []);   // no history: nothing to fill
 });

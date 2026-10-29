@@ -10,6 +10,7 @@
      node engine/cli.js note "<text>"
      node engine/cli.js weight <lb> | remove    body weight for the day
      node engine/cli.js finish | skip | rest    close the day, save the next plan
+     node engine/cli.js catch-up                 days since the last entry with no reply become skips
      node engine/cli.js summary                 the day so far vs last time
      node engine/cli.js find <words>            look up lift ids
      node engine/cli.js requests                lifts Alex asked for on the dashboard
@@ -181,6 +182,27 @@ export function validate(data) {
   return problems;
 }
 
+// Days Alex never answered: every date after the last entry and before `date` with nothing logged
+// becomes a skip (so the rotation stays put), and a day left in progress is closed:
+// completed if anything was logged, skipped if not. Returns [{ date, status }].
+export function catchUp(data, date) {
+  const dates = Object.keys(data.workouts).filter((d) => d < date).sort();
+  if (!dates.length) return [];
+  const filled = [];
+  dates.filter((d) => data.workouts[d].status === "in_progress").forEach((d) => {
+    const w = data.workouts[d];
+    w.status = (w.lifts || []).some((l) => (l.sets || []).length) || (w.cardio || []).length ? "completed" : "skipped";
+    w.auto = true;
+    filled.push({ date: d, status: w.status });
+  });
+  for (let d = addDays(dates.at(-1), 1); d < date; d = addDays(d, 1)) {
+    const { day } = computePlan({ ...data, date: d });
+    data.workouts[d] = { status: "skipped", day, cardio: [], lifts: [], auto: true, notes: "No reply that day." };
+    filled.push({ date: d, status: "skipped" });
+  }
+  return filled;
+}
+
 // Removes and returns request number `n` from preferences.requests
 function takeRequest(prefs, n) {
   const list = prefs.requests || [];
@@ -315,6 +337,13 @@ function main(argv) {
       console.log(`Up next:\n${formatPlan(next, data)}`);
       break;
     }
+    case "catch-up": {
+      const filled = catchUp(data, date);
+      new Set(filled.map((f) => f.date.slice(0, 4))).forEach((y) => saveDay(data, `${y}-01-01`));
+      if (filled.length) writeState();
+      console.log(filled.length ? filled.map((f) => `${f.date}: ${f.status}${f.status === "completed" ? " (never said finished)" : " (no reply)"}`).join("\n") : "Nothing to catch up.");
+      break;
+    }
     case "summary":
       console.log(summarize(data, date));
       break;
@@ -378,7 +407,7 @@ function main(argv) {
       break;
     }
     default:
-      console.log(readFileSync(fileURLToPath(import.meta.url), "utf8").split("\n").slice(2, 22).join("\n"));
+      console.log(readFileSync(fileURLToPath(import.meta.url), "utf8").split("\n").slice(2, 23).join("\n"));
   }
 }
 
