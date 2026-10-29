@@ -62,10 +62,5 @@
   "never": [
     "arnold-press"
   ],
-  "requests": [
-    {
-      "text": "Hack squat machine",
-      "at": "2026-10-28T21:10:04.982Z"
-    }
-  ]
+  "requests": []
 }
