@@ -4,5 +4,21 @@
     "lifts": [],
     "day": "push",
     "status": "skipped"
+  },
+  "2026-10-28": {
+    "status": "skipped",
+    "day": "push",
+    "cardio": [],
+    "lifts": [],
+    "auto": true,
+    "notes": "No reply that day."
+  },
+  "2026-10-29": {
+    "status": "skipped",
+    "day": "push",
+    "cardio": [],
+    "lifts": [],
+    "auto": true,
+    "notes": "No reply that day."
   }
 }
