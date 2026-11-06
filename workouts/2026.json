@@ -80,7 +80,25 @@
         "notes": "1.2 miles, 255 calories"
       }
     ],
-    "lifts": [],
+    "lifts": [
+      {
+        "exercise": "machine-chest-press",
+        "sets": [
+          {
+            "weight": 55,
+            "reps": 12
+          },
+          {
+            "weight": 55,
+            "reps": 10
+          },
+          {
+            "weight": 55,
+            "reps": 10
+          }
+        ]
+      }
+    ],
     "recommended": {
       "lifts": [
         "machine-chest-press",
