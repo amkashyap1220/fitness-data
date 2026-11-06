@@ -68,5 +68,28 @@
     "lifts": [],
     "auto": true,
     "notes": "No reply that day."
+  },
+  "2026-11-05": {
+    "status": "in_progress",
+    "day": "push",
+    "started": "2026-11-06T01:44:53.452Z",
+    "cardio": [
+      {
+        "machine": "elliptical",
+        "minutes": 25,
+        "notes": "1.2 miles, 255 calories"
+      }
+    ],
+    "lifts": [],
+    "recommended": {
+      "lifts": [
+        "machine-chest-press",
+        "seated-db-shoulder-press",
+        "pec-deck",
+        "overhead-tricep-extension",
+        "cable-lateral-raise"
+      ],
+      "cardio": "treadmill"
+    }
   }
 }
