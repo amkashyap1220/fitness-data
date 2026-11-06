@@ -97,6 +97,23 @@
             "reps": 10
           }
         ]
+      },
+      {
+        "exercise": "machine-shoulder-press",
+        "sets": [
+          {
+            "weight": 78,
+            "reps": 10
+          },
+          {
+            "weight": 78,
+            "reps": 5
+          },
+          {
+            "weight": 58,
+            "reps": 8
+          }
+        ]
       }
     ],
     "recommended": {
