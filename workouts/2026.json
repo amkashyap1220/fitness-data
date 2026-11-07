@@ -127,5 +127,13 @@
       "cardio": "treadmill"
     },
     "finished": "2026-11-06T01:55:34.311Z"
+  },
+  "2026-11-06": {
+    "status": "skipped",
+    "day": "pull",
+    "cardio": [],
+    "lifts": [],
+    "auto": true,
+    "notes": "No reply that day."
   }
 }
