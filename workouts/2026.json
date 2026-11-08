@@ -145,10 +145,15 @@
     "notes": "No reply that day."
   },
   "2026-11-08": {
-    "status": "in_progress",
+    "status": "completed",
     "day": "pull",
     "started": "2026-11-08T16:13:45.647Z",
-    "cardio": [],
+    "cardio": [
+      {
+        "machine": "elliptical",
+        "minutes": 25
+      }
+    ],
     "lifts": [
       {
         "exercise": "lat-pulldown",
@@ -183,6 +188,23 @@
             "reps": 7
           }
         ]
+      },
+      {
+        "exercise": "machine-bicep-curl",
+        "sets": [
+          {
+            "weight": 60,
+            "reps": 9
+          },
+          {
+            "weight": 60,
+            "reps": 6
+          },
+          {
+            "weight": 50,
+            "reps": 7
+          }
+        ]
       }
     ],
     "recommended": {
@@ -194,6 +216,7 @@
         "db-shrug"
       ],
       "cardio": "treadmill"
-    }
+    },
+    "finished": "2026-11-08T16:23:28.125Z"
   }
 }

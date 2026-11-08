@@ -1067,6 +1067,25 @@
       "increment": 5,
       "id": "machine-crunch",
       "custom": true
+    },
+    {
+      "name": "Machine bicep curl",
+      "slot": "biceps",
+      "primary": [
+        "biceps"
+      ],
+      "secondary": [
+        "forearms"
+      ],
+      "equipment": "machine",
+      "type": "isolation",
+      "reps": [
+        8,
+        12
+      ],
+      "increment": 5,
+      "id": "machine-bicep-curl",
+      "custom": true
     }
   ]
 }

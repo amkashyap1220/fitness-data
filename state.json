@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-11-08T10:41:46.941Z",
+  "generated_at": "2026-11-08T16:23:28.125Z",
   "plan": {
-    "date": "2026-11-08",
-    "day": "pull",
-    "dayName": "Pull",
+    "date": "2026-11-09",
+    "day": "legs",
+    "dayName": "Legs",
     "number": 1,
     "cardio": {
       "minutes": 25,
@@ -12,10 +12,10 @@
     },
     "lifts": [
       {
-        "slot": "v_pull",
-        "slotName": "Vertical pull",
-        "exercise": "lat-pulldown",
-        "name": "Lat pulldown",
+        "slot": "squat",
+        "slotName": "Squat pattern",
+        "exercise": "goblet-squat",
+        "name": "Goblet squat",
         "sets": 3,
         "reps": [
           8,
@@ -23,14 +23,14 @@
         ],
         "weight": null,
         "note": "No history yet: find a weight you can do for 8 to 12 reps",
-        "why": "your #1 for vertical pull",
+        "why": "your #1 for squat pattern",
         "flex": false
       },
       {
-        "slot": "h_row",
-        "slotName": "Horizontal row",
-        "exercise": "seated-cable-row",
-        "name": "Seated cable row",
+        "slot": "hinge",
+        "slotName": "Hip hinge",
+        "exercise": "romanian-deadlift",
+        "name": "Romanian deadlift",
         "sets": 3,
         "reps": [
           8,
@@ -38,44 +38,14 @@
         ],
         "weight": null,
         "note": "No history yet: find a weight you can do for 8 to 12 reps",
-        "why": "your #1 for horizontal row",
+        "why": "a standard pick for this slot",
         "flex": false
       },
       {
-        "slot": "rear_delts",
-        "slotName": "Rear delts",
-        "exercise": "reverse-pec-deck",
-        "name": "Reverse pec deck",
-        "sets": 3,
-        "reps": [
-          12,
-          20
-        ],
-        "weight": null,
-        "note": "No history yet: find a weight you can do for 12 to 20 reps",
-        "why": "your #1 for rear delts",
-        "flex": false
-      },
-      {
-        "slot": "biceps",
-        "slotName": "Biceps",
-        "exercise": "db-curl",
-        "name": "Dumbbell curl",
-        "sets": 3,
-        "reps": [
-          8,
-          12
-        ],
-        "weight": null,
-        "note": "No history yet: find a weight you can do for 8 to 12 reps",
-        "why": "your #1 for biceps",
-        "flex": false
-      },
-      {
-        "slot": "traps",
-        "slotName": "Traps",
-        "exercise": "db-shrug",
-        "name": "Dumbbell shrug",
+        "slot": "leg_acc",
+        "slotName": "Hamstring curl or quad extension",
+        "exercise": "seated-leg-curl",
+        "name": "Seated leg curl",
         "sets": 3,
         "reps": [
           10,
@@ -83,12 +53,40 @@
         ],
         "weight": null,
         "note": "No history yet: find a weight you can do for 10 to 15 reps",
-        "why": "one of your favorites; your #1 for traps",
+        "why": "your #1 for hamstring curl or quad extension",
+        "flex": false
+      },
+      {
+        "slot": "calves",
+        "slotName": "Calves",
+        "exercise": "standing-calf-raise",
+        "name": "Standing calf raise",
+        "sets": 3,
+        "reps": [
+          10,
+          20
+        ],
+        "weight": null,
+        "note": "No history yet: find a weight you can do for 10 to 20 reps",
+        "why": "a standard pick for this slot",
+        "flex": false
+      },
+      {
+        "slot": "leg_press",
+        "slotName": "Leg press",
+        "exercise": "leg-press",
+        "name": "Leg press",
+        "sets": 3,
+        "reps": [
+          10,
+          15
+        ],
+        "weight": null,
+        "note": "No history yet: find a weight you can do for 10 to 15 reps",
+        "why": "one of your favorites; your #1 for leg press",
         "flex": true
       }
     ],
-    "notes": [
-      "2 skipped since your last workout, so Pull is still up."
-    ]
+    "notes": []
   }
 }
