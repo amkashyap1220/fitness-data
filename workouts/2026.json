@@ -143,5 +143,40 @@
     "lifts": [],
     "auto": true,
     "notes": "No reply that day."
+  },
+  "2026-11-08": {
+    "status": "in_progress",
+    "day": "pull",
+    "started": "2026-11-08T16:13:45.647Z",
+    "cardio": [],
+    "lifts": [
+      {
+        "exercise": "lat-pulldown",
+        "sets": [
+          {
+            "weight": 100,
+            "reps": 9
+          },
+          {
+            "weight": 100,
+            "reps": 9
+          },
+          {
+            "weight": 85,
+            "reps": 10
+          }
+        ]
+      }
+    ],
+    "recommended": {
+      "lifts": [
+        "lat-pulldown",
+        "seated-cable-row",
+        "reverse-pec-deck",
+        "db-curl",
+        "db-shrug"
+      ],
+      "cardio": "treadmill"
+    }
   }
 }
