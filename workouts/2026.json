@@ -166,6 +166,23 @@
             "reps": 10
           }
         ]
+      },
+      {
+        "exercise": "chest-supported-row",
+        "sets": [
+          {
+            "weight": 70,
+            "reps": 6
+          },
+          {
+            "weight": 60,
+            "reps": 6
+          },
+          {
+            "weight": 60,
+            "reps": 7
+          }
+        ]
       }
     ],
     "recommended": {
