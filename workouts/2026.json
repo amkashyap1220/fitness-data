@@ -218,5 +218,29 @@
       "cardio": "treadmill"
     },
     "finished": "2026-11-08T16:23:28.125Z"
+  },
+  "2026-11-09": {
+    "status": "completed",
+    "day": "legs",
+    "started": "2026-11-09T13:15:19.967Z",
+    "cardio": [
+      {
+        "machine": "bike",
+        "minutes": 40,
+        "notes": "indoor, 8.65 miles"
+      }
+    ],
+    "lifts": [],
+    "recommended": {
+      "lifts": [
+        "goblet-squat",
+        "romanian-deadlift",
+        "seated-leg-curl",
+        "standing-calf-raise",
+        "leg-press"
+      ],
+      "cardio": "treadmill"
+    },
+    "finished": "2026-11-09T13:15:20.042Z"
   }
 }

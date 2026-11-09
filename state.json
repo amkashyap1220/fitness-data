@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-11-08T16:23:28.125Z",
+  "generated_at": "2026-11-09T13:15:20.042Z",
   "plan": {
-    "date": "2026-11-09",
-    "day": "legs",
-    "dayName": "Legs",
-    "number": 1,
+    "date": "2026-11-10",
+    "day": "push",
+    "dayName": "Push",
+    "number": 2,
     "cardio": {
       "minutes": 25,
       "machine": "treadmill",
@@ -12,40 +12,40 @@
     },
     "lifts": [
       {
-        "slot": "squat",
-        "slotName": "Squat pattern",
-        "exercise": "goblet-squat",
-        "name": "Goblet squat",
+        "slot": "h_press",
+        "slotName": "Horizontal press",
+        "exercise": "machine-chest-press",
+        "name": "Machine chest press",
         "sets": 3,
         "reps": [
           8,
           12
         ],
-        "weight": null,
-        "note": "No history yet: find a weight you can do for 8 to 12 reps",
-        "why": "your #1 for squat pattern",
+        "weight": 55,
+        "note": "Last: 55 × 12, 10, 10 on 2026-11-05. Same weight, beat it by a rep",
+        "why": "your #1 for horizontal press, logged 1× in the last 8 weeks",
         "flex": false
       },
       {
-        "slot": "hinge",
-        "slotName": "Hip hinge",
-        "exercise": "romanian-deadlift",
-        "name": "Romanian deadlift",
+        "slot": "v_press",
+        "slotName": "Vertical press",
+        "exercise": "machine-shoulder-press",
+        "name": "Machine shoulder press",
         "sets": 3,
         "reps": [
           8,
           12
         ],
-        "weight": null,
-        "note": "No history yet: find a weight you can do for 8 to 12 reps",
-        "why": "a standard pick for this slot",
+        "weight": 78,
+        "note": "Last: 78 × 10, 5 on 2026-11-05. Same weight, beat it by a rep",
+        "why": "your #2 for vertical press, logged 1× in the last 8 weeks",
         "flex": false
       },
       {
-        "slot": "leg_acc",
-        "slotName": "Hamstring curl or quad extension",
-        "exercise": "seated-leg-curl",
-        "name": "Seated leg curl",
+        "slot": "chest_acc",
+        "slotName": "Incline or chest isolation",
+        "exercise": "pec-deck",
+        "name": "Pec deck",
         "sets": 3,
         "reps": [
           10,
@@ -53,37 +53,37 @@
         ],
         "weight": null,
         "note": "No history yet: find a weight you can do for 10 to 15 reps",
-        "why": "your #1 for hamstring curl or quad extension",
+        "why": "your #1 for incline or chest isolation",
         "flex": false
       },
       {
-        "slot": "calves",
-        "slotName": "Calves",
-        "exercise": "standing-calf-raise",
-        "name": "Standing calf raise",
+        "slot": "triceps",
+        "slotName": "Triceps",
+        "exercise": "overhead-tricep-extension",
+        "name": "Overhead cable tricep extension",
         "sets": 3,
         "reps": [
           10,
+          15
+        ],
+        "weight": null,
+        "note": "No history yet: find a weight you can do for 10 to 15 reps",
+        "why": "your #1 for triceps",
+        "flex": false
+      },
+      {
+        "slot": "side_delts",
+        "slotName": "Side delts",
+        "exercise": "cable-lateral-raise",
+        "name": "Cable lateral raise",
+        "sets": 3,
+        "reps": [
+          12,
           20
         ],
         "weight": null,
-        "note": "No history yet: find a weight you can do for 10 to 20 reps",
-        "why": "a standard pick for this slot",
-        "flex": false
-      },
-      {
-        "slot": "leg_press",
-        "slotName": "Leg press",
-        "exercise": "leg-press",
-        "name": "Leg press",
-        "sets": 3,
-        "reps": [
-          10,
-          15
-        ],
-        "weight": null,
-        "note": "No history yet: find a weight you can do for 10 to 15 reps",
-        "why": "one of your favorites; your #1 for leg press",
+        "note": "No history yet: find a weight you can do for 12 to 20 reps",
+        "why": "extra side delts work (0.4 sets a week lately, target 10); your #1 for side delts",
         "flex": true
       }
     ],
