@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-11-12T10:39:19.363Z",
+  "generated_at": "2026-11-13T10:39:17.215Z",
   "plan": {
-    "date": "2026-11-12",
+    "date": "2026-11-13",
     "day": "push",
     "dayName": "Push",
     "number": 2,
@@ -88,7 +88,7 @@
       }
     ],
     "notes": [
-      "2 skipped since your last workout, so Push is still up."
+      "3 skipped since your last workout, so Push is still up."
     ]
   }
 }
