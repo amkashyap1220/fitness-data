@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-11-15T10:39:26.279Z",
+  "generated_at": "2026-11-16T10:39:44.081Z",
   "plan": {
-    "date": "2026-11-15",
+    "date": "2026-11-16",
     "day": "push",
     "dayName": "Push",
     "number": 2,
@@ -21,8 +21,8 @@
           8,
           12
         ],
-        "weight": 55,
-        "note": "Last: 55 × 12, 10, 10 on 2026-11-05. Same weight, beat it by a rep",
+        "weight": 50,
+        "note": "Last: 55 × 12, 10, 10 on 2026-11-05. Same weight, beat it by a rep (eased back after the break)",
         "why": "your #1 for horizontal press, logged 1× in the last 8 weeks",
         "flex": false
       },
@@ -36,8 +36,8 @@
           8,
           12
         ],
-        "weight": 78,
-        "note": "Last: 78 × 10, 5 on 2026-11-05. Same weight, beat it by a rep",
+        "weight": 70,
+        "note": "Last: 78 × 10, 5 on 2026-11-05. Same weight, beat it by a rep (eased back after the break)",
         "why": "your #2 for vertical press, logged 1× in the last 8 weeks",
         "flex": false
       },
@@ -88,7 +88,8 @@
       }
     ],
     "notes": [
-      "5 skipped since your last workout, so Push is still up."
+      "6 skipped since your last workout, so Push is still up.",
+      "7 days since your last workout: weights are about 10% lighter today."
     ]
   }
 }
