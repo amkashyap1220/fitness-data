@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-11-17T10:39:10.867Z",
+  "generated_at": "2026-11-18T10:39:26.876Z",
   "plan": {
-    "date": "2026-11-17",
+    "date": "2026-11-18",
     "day": "push",
     "dayName": "Push",
     "number": 2,
@@ -88,8 +88,8 @@
       }
     ],
     "notes": [
-      "7 skipped since your last workout, so Push is still up.",
-      "8 days since your last workout: weights are about 10% lighter today."
+      "8 skipped since your last workout, so Push is still up.",
+      "9 days since your last workout: weights are about 10% lighter today."
     ]
   }
 }
